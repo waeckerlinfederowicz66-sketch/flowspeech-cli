@@ -1,0 +1,12 @@
+.venv/
+.test-tmp/
+.artifact-test/
+__pycache__/
+.pytest_cache/
+dist/
+build/
+*.egg-info/
+vendor/
+.env
+.env.*
+
