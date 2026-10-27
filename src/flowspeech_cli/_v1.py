@@ -169,7 +169,7 @@ class V1Client:
     def __init__(self, *, api_key=None, base_url="https://flowspeech.io", timeout=300.0,
                  http_client=None, download_client=None, poll_interval=5.0,
                  max_retries=2, max_download_bytes=64 * 1024 * 1024,
-                 clock=time.monotonic, sleep=time.sleep, user_agent="flowspeech/0.2.0"):
+                 clock=time.monotonic, sleep=time.sleep, user_agent="flowspeech/0.2.1"):
         key = api_key if api_key is not None else os.getenv("FLOWSPEECH_API_KEY")
         if not isinstance(key, str) or not key or any(ord(c) < 33 or ord(c) > 126 for c in key):
             raise ApiError("FlowSpeech API key is required and must contain no whitespace", code="configuration")

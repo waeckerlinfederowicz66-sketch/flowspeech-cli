@@ -16,6 +16,14 @@ def test_client_signature_and_base64_compatibility(factory):
     assert base64.b64decode(result.audio_base64) == wav_bytes()
     assert result.job_id == JOB and result.request_id == REQUEST
     assert calls[0].url.path == "/api/v1/tts/jobs"
+    assert calls[0].headers["User-Agent"] == "flowspeech-cli/0.2.1"
+
+
+def test_release_version(capsys):
+    with pytest.raises(SystemExit) as caught:
+        cli.main(["--version"])
+    assert caught.value.code == 0
+    assert capsys.readouterr().out.strip() == "flowspeech 0.2.1"
 
 
 @pytest.mark.parametrize("input_kind", ["inline", "file", "segments"])

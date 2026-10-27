@@ -1,10 +1,9 @@
 # Changelog
 
-## Unreleased
+## 0.2.1 - 2026-10-27
 
 - Keep reflected credentials and private URLs out of error messages, codes and
   trace IDs, including terminal-job errors.
-
 - Preserve HTTP status and Retry-After when a response body is interrupted;
   do not retry known authentication failures.
 - Bound active HTTP workers and reject overlapping calls on an occupied client,

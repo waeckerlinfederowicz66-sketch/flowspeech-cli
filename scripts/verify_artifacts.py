@@ -48,7 +48,7 @@ def inspect(path):
     assert sum(len(content) for _, content in entries) <= 100 * 1024 * 1024
     if path.suffix == ".whl":
         metadata = next(content for name, content in entries if name.endswith(".dist-info/METADATA"))
-        assert b"Version: 0.2.0\n" in metadata
+        assert b"Version: 0.2.1\n" in metadata
         assert b"Requires-Dist: httpx" in metadata
         assert (b"Project-URL: Repository, https://github.com/"
                 b"waeckerlinfederowicz66-sketch/flowspeech-cli\n") in metadata

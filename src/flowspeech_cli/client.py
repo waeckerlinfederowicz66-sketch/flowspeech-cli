@@ -41,7 +41,7 @@ def synthesize(text: str | None = None, *, voice: str = DEFAULT_VOICE,
                http_client=None, download_client=None) -> SynthesisResult:
     with V1Client(api_key=api_key, base_url=api_origin(api_url), timeout=timeout,
                   max_retries=retries, http_client=http_client, download_client=download_client,
-                  user_agent="flowspeech-cli/0.2.0") as client:
+                  user_agent="flowspeech-cli/0.2.1") as client:
         job, audio, request_id = client.generate(make_input(text, voice, segments), request_id=request_id)
     return SynthesisResult(base64.b64encode(audio).decode("ascii"), "audio/wav",
                            job_id=job["id"], request_id=request_id,

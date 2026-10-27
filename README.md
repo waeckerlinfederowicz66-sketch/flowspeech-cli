@@ -3,7 +3,7 @@
 Command-line client for [FlowSpeech](https://flowspeech.io/) public API v1.
 
 ```bash
-pip install flowspeech-cli==0.2.0
+pip install flowspeech-cli==0.2.1
 ```
 
 Set FLOWSPEECH_API_KEY in your server or local terminal environment. The CLI never

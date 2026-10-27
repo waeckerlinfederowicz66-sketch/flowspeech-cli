@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "flowspeech-cli"
-version = "0.2.0"
+version = "0.2.1"
 description = "Command-line client for FlowSpeech public API v1 text to speech."
 readme = "README.md"
 requires-python = ">=3.9"

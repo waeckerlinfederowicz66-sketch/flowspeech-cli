@@ -1,3 +1,35 @@
+# Release 0.2.1
+
+This candidate contains the previously reviewed FlowSpeech public API v1 safety
+fixes: sanitized upstream errors, interrupted-body status/cooldown preservation,
+and bounded HTTP-worker lifetimes. No additional API behavior is introduced.
+
+Only the coordinator may commit, tag, push, dispatch publication workflows, or
+publish packages, after separate authorization. Preserve older publications and
+tags. Use commit email waeckerlinfederowicz66@gmail.com for a future authorized commit.
+
+## Current Verification and Gates
+
+Run source tests with synthetic audio and mock transports only. Build fresh
+0.2.1 wheels and sdists with build 1.3.0 and hatchling 1.27.0, then run twine 6.2.0
+checks. Test the extracted sdist and the installed wheel with pytest's source path
+disabled and imports proven to resolve to the installed target. Inspect actual
+archive contents against explicit allowlists and record final SHA-256 hashes.
+
+The 0.2.1 section of VALIDATION.md records current local checks; older sections
+are historical evidence only. Exact hashes, logs, changed files and remaining
+gates are in the coordinator's python-handoff.json for this release. Confirm
+0.2.1 registry availability, final committed source, passing remote CI and exact
+artifact hashes before publication. Do not dispatch a publish workflow as a test.
+
+The existing publish workflow rebuilds in a separate publish job after verification;
+the coordinator must address verified-versus-uploaded artifact consistency before
+using it. Release-published and manual-dispatch events can reach publication.
+
+# Historical Release 0.2.0
+
+The text below is preserved historical evidence, not the 0.2.1 release procedure.
+
 # Release 0.2.0
 
 ## Coordinator steps
