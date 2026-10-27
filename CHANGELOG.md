@@ -1,5 +1,15 @@
 # Changelog
 
+## Unreleased
+
+- Keep reflected credentials and private URLs out of error messages, codes and
+  trace IDs, including terminal-job errors.
+
+- Preserve HTTP status and Retry-After when a response body is interrupted;
+  do not retry known authentication failures.
+- Bound active HTTP workers and reject overlapping calls on an occupied client,
+  including requests that remain active after the caller's deadline.
+
 ## 0.2.0 - 2026-10-26
 
 - Require requestId on every job response; normalize job/request UUIDs before comparison and return canonical lowercase IDs.

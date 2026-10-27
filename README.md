@@ -74,6 +74,23 @@ failures, 429, and explicitly retryable 5xx errors get at most two retries.
 Create retries preserve the UUID and exact body. A deadline stops local waiting,
 not the server job; use the saved IDs for recovery or explicit cancellation.
 
+A deadline ends local waiting, not the remote job. A transport already in progress
+may finish later; its worker performs no follow-up request. Each client permits
+one active HTTP request, and this package permits at most eight HTTP workers per
+process. An occupied client raises `request_in_progress`; exhausted capacity
+raises `client_busy`, without queueing or sending another request. Do not use one
+client concurrently, and recover the original request ID after a timeout instead
+of submitting a new recording. Caller-owned HTTP clients are never closed.
+Closing this client rejects future work; cleanup of owned HTTP clients is
+deferred until any active request exits, rather than blocking local shutdown.
+
+If reading a response body fails, known status codes and Retry-After are retained.
+Authentication failures are not retried. Interrupted successful or server-error
+responses use bounded transport retries with the original UUID and body.
+Errors use a local HTTP-status message rather than echoing upstream text. Error
+codes and trace IDs are bounded tokens, filtered for credentials and URLs;
+request/job IDs remain available for recovery.
+
 Errors expose status_code, code, retryable, trace_id, request_id, job_id and
 result_url where available. Failed and cancelled jobs raise errors. Deleted
 success results are reported as result_deleted, not as empty audio.
